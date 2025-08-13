@@ -2,12 +2,17 @@
 #include "keys.h"
 
 USBHost myusb;
-MIDIDevice midi1(myusb);
+MIDIDevice* midi1 = nullptr;
 MidiMode currentMidiMode = DEVICE_ONLY;
 
 void initMidi() {
     // Initialisation USB Host
     myusb.begin();
+    
+    // Initialisation du périphérique MIDI Host
+    if (midi1 == nullptr) {
+        midi1 = new MIDIDevice(myusb);
+    }
     
     // Détection du mode MIDI initial
     updateMidiMode();
@@ -37,7 +42,7 @@ void midiHostTask() {
     myusb.Task();
     
     // Traitement des messages MIDI Host entrants (si nécessaire)
-    if (midi1) {
+    if (midi1 && *midi1) {
         // Lecture des messages MIDI du périphérique connecté
         // TODO: Implémenter le routage des messages entrants si nécessaire
     }
@@ -51,15 +56,15 @@ void sendNoteOn(uint8_t note, uint8_t velocity, uint8_t channel) {
             break;
             
         case HOST_ONLY:
-            if (midi1) {
-                midi1.sendNoteOn(note, velocity, channel);
+            if (midi1 && *midi1) {
+                midi1->sendNoteOn(note, velocity, channel);
             }
             break;
             
         case HOST_AND_DEVICE:
             usbMIDI.sendNoteOn(note, velocity, channel);
-            if (midi1) {
-                midi1.sendNoteOn(note, velocity, channel);
+            if (midi1 && *midi1) {
+                midi1->sendNoteOn(note, velocity, channel);
             }
             break;
     }
@@ -73,15 +78,15 @@ void sendNoteOff(uint8_t note, uint8_t velocity, uint8_t channel) {
             break;
             
         case HOST_ONLY:
-            if (midi1) {
-                midi1.sendNoteOff(note, velocity, channel);
+            if (midi1 && *midi1) {
+                midi1->sendNoteOff(note, velocity, channel);
             }
             break;
             
         case HOST_AND_DEVICE:
             usbMIDI.sendNoteOff(note, velocity, channel);
-            if (midi1) {
-                midi1.sendNoteOff(note, velocity, channel);
+            if (midi1 && *midi1) {
+                midi1->sendNoteOff(note, velocity, channel);
             }
             break;
     }
@@ -95,15 +100,15 @@ void sendControlChange(uint8_t controller, uint8_t value, uint8_t channel) {
             break;
             
         case HOST_ONLY:
-            if (midi1) {
-                midi1.sendControlChange(controller, value, channel);
+            if (midi1 && *midi1) {
+                midi1->sendControlChange(controller, value, channel);
             }
             break;
             
         case HOST_AND_DEVICE:
             usbMIDI.sendControlChange(controller, value, channel);
-            if (midi1) {
-                midi1.sendControlChange(controller, value, channel);
+            if (midi1 && *midi1) {
+                midi1->sendControlChange(controller, value, channel);
             }
             break;
     }

@@ -11,7 +11,7 @@ enum MidiMode {
 };
 
 extern USBHost myusb;
-extern MIDIDevice midi1;
+extern MIDIDevice* midi1;
 extern MidiMode currentMidiMode;
 
 // Initialisation MIDI
