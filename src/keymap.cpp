@@ -2,26 +2,27 @@
 #include "keys.h"
 #include "calibration.h"
 #include "midi_routing.h"
+#include "note_map.h"
 
-// LUT 120 touches : keymap[mux][channel] -> index dans keyBuf[0..119]
+// LUT 128 touches : keymap[mux][channel] -> index dans keyBuf[0..127]
 // -1 = trou (MUX1: I4,I6,I9,I11 / MUX8: I1,I3,I12,I14)
 const int8_t keymap[NUM_MUX][MUX_CHANNELS] = {
     // MUX1 (index 0) - trous aux positions 4,6,9,11
-    { 0,  1,  2,  3, -1,  5, -1,  7,  8, -1, 10, -1, 12, 13, 14, 15},
+    { 0,  1,  2,  3, -1,  4, -1,  5,  6, -1,  7, -1,  8,  9, 10, 11},
     // MUX2 (index 1)
-    {16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31},
+    {12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27},
     // MUX3 (index 2) 
-    {32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47},
+    {28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43},
     // MUX4 (index 3)
-    {48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63},
+    {44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59},
     // MUX5 (index 4)
-    {64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79},
+    {60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75},
     // MUX6 (index 5)
-    {80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95},
+    {76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91},
     // MUX7 (index 6)
-    {96, 97, 98, 99,100,101,102,103,104,105,106,107,108,109,110,111},
+    {92, 93, 94, 95, 96, 97, 98, 99,100,101,102,103,104,105,106,107},
     // MUX8 (index 7) - trous aux positions 1,3,12,14
-    {112, -1,114, -1,116,117,118,119, -1, -1, -1, -1, -1, -1, -1, -1}
+    {108, -1,109, -1,110,111,112,113,114,115,116,117, -1,118, -1,119}
 };
 
 KeyData keyStates[NUM_KEYS];
@@ -47,7 +48,7 @@ void initKeyMap() {
         keyStates[i].pressTime = 0;
         keyStates[i].releaseTime = 0;
         keyStates[i].velocity = 0;
-        keyStates[i].note = 36 + i; // Notes MIDI à partir de C2
+        keyStates[i].note = getNoteForKey(i); // Note depuis note_map
         keyStates[i].noteOn = false;
     }
 }
