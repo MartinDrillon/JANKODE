@@ -4,11 +4,11 @@ CalibrationData calibration;
 
 void calibrationInitDefaults() {
     // Basé sur VCC=3.3V, ADC 10 bits (0-1023)
-    // 2.3V ≈ (2.3/3.3) * 1023 ≈ 716 LSB
-    // 3.2V ≈ (3.2/3.3) * 1023 ≈ 993 LSB
-    calibration.thresholdLow = 716;      // Seuil de détection pression
-    calibration.thresholdHigh = 993;     // Seuil pression confirmée  
-    calibration.thresholdRelease = 943;  // thresholdHigh - 50 (hystérésis)
+    // 2.2V ≈ (2.2/3.3) * 1023 ≈ 682 LSB + 30 pour ne pas lancer des suivis involontaires 712
+    // 3.08V ≈ (3.08/3.3) * 1023 ≈ 954 LSB - 30 pour éviter de rater un déclenchement 924
+    calibration.thresholdLow = 712;      // Seuil de détection pression
+    calibration.thresholdHigh = 924;     // Seuil pression confirmée  
+    calibration.thresholdRelease = 874;  // thresholdHigh - 50 (hystérésis)
 }
 
 void startCalibration() {

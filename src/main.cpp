@@ -3,6 +3,7 @@
 #include "keymap.h"
 #include "calibration.h"
 #include "midi_routing.h"
+#include "simple_leds.h"
 
 #if USE_V3_DMA
 #include "scan_dma.h"
@@ -26,6 +27,9 @@ void setup() {
     
     // Initialisation MIDI
     initMidi();
+
+    // Initialisation LEDs simples
+    simpleLedsInit();
     
     // Initialisation du mode de scan
 #if USE_V3_DMA
@@ -82,4 +86,7 @@ void loop() {
     while (usbMIDI.read()) {
         // Traitement des messages MIDI entrants si nécessaire
     }
+
+    // Mise à jour LEDs simples
+    simpleLedsTask();
 }
