@@ -1,28 +1,32 @@
 #pragma once
 #include <Arduino.h>
 
-// Configuration des pins pour les MUX
-// Sélecteurs GROUP A (MUX1-4) : pins 27,26,28,29 (S0,S1,S2,S3)
-constexpr uint8_t SEL_A_S0 = 27;
-constexpr uint8_t SEL_A_S1 = 26;
-constexpr uint8_t SEL_A_S2 = 28;
-constexpr uint8_t SEL_A_S3 = 29;
+// Configuration des pins pour les MUX (NOUVELLE CARTE)
+// Sélecteurs GROUP A (MUX1-4) : pins 35,34,36,37 (S0,S1,S2,S3)
+constexpr uint8_t SEL_A_S0 = 35;
+constexpr uint8_t SEL_A_S1 = 34;
+constexpr uint8_t SEL_A_S2 = 36;
+constexpr uint8_t SEL_A_S3 = 37;
+// Tableau pratique (ordre S0,S1,S2,S3)
+constexpr uint8_t SEL_A[4] = { SEL_A_S0, SEL_A_S1, SEL_A_S2, SEL_A_S3 };
 
-// Sélecteurs GROUP B (MUX5-8) : pins 38,39,37,36 (S0,S1,S2,S3)
-constexpr uint8_t SEL_B_S0 = 38;
-constexpr uint8_t SEL_B_S1 = 39;
-constexpr uint8_t SEL_B_S2 = 37;
-constexpr uint8_t SEL_B_S3 = 36;
+// Sélecteurs GROUP B (MUX5-8) : pins 17,16,18,19 (S0,S1,S2,S3)
+constexpr uint8_t SEL_B_S0 = 17;
+constexpr uint8_t SEL_B_S1 = 16;
+constexpr uint8_t SEL_B_S2 = 18;
+constexpr uint8_t SEL_B_S3 = 19;
+constexpr uint8_t SEL_B[4] = { SEL_B_S0, SEL_B_S1, SEL_B_S2, SEL_B_S3 };
 
-// Entrées analogiques MUX1-8 : pins 33,32,31,30,45,44,43,42
-constexpr uint8_t A_MUX1 = 33;  // A7
-constexpr uint8_t A_MUX2 = 32;  // A8
-constexpr uint8_t A_MUX3 = 31;  // A9
-constexpr uint8_t A_MUX4 = 30;  // A10
-constexpr uint8_t A_MUX5 = 45;  // A11
-constexpr uint8_t A_MUX6 = 44;  // A12
-constexpr uint8_t A_MUX7 = 43;  // A13
-constexpr uint8_t A_MUX8 = 42;  // A14
+// Entrées analogiques MUX1-8 : nouvelle correspondance
+// MUX1..8 -> pins 41,40,39,38,20,21,22,23
+constexpr uint8_t A_MUX1 = 41;  // anciennement 33
+constexpr uint8_t A_MUX2 = 40;  // anciennement 32
+constexpr uint8_t A_MUX3 = 39;  // anciennement 31
+constexpr uint8_t A_MUX4 = 38;  // anciennement 30
+constexpr uint8_t A_MUX5 = 20;  // anciennement 45
+constexpr uint8_t A_MUX6 = 21;  // anciennement 44
+constexpr uint8_t A_MUX7 = 22;  // anciennement 43
+constexpr uint8_t A_MUX8 = 23;  // anciennement 42
 
 // Pins MIDI routing
 constexpr uint8_t MIDI_PIN4 = 4;

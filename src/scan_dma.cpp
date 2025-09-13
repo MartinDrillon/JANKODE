@@ -17,16 +17,16 @@ struct PinToADC {
     uint8_t channel; // Canal ADC
 };
 
-// Mapping pour pins 33,32,31,30,45,44,43,42
+// Mapping pour nouvelles pins analogiques 41,40,39,38,20,21,22,23
 static const PinToADC pinMapping[8] = {
-    {1, 7},   // Pin 33 -> ADC1_IN7
-    {1, 8},   // Pin 32 -> ADC1_IN8  
-    {1, 9},   // Pin 31 -> ADC1_IN9
-    {1, 10},  // Pin 30 -> ADC1_IN10
-    {2, 1},   // Pin 45 -> ADC2_IN1
-    {2, 2},   // Pin 44 -> ADC2_IN2
-    {2, 3},   // Pin 43 -> ADC2_IN3
-    {2, 4}    // Pin 42 -> ADC2_IN4
+    {1, 0},   // Pin 41 -> ADC1_IN0
+    {1, 1},   // Pin 40 -> ADC1_IN1
+    {1, 2},   // Pin 39 -> ADC1_IN2
+    {1, 3},   // Pin 38 -> ADC1_IN3
+    {2, 6},   // Pin 20 -> ADC2_IN6
+    {2, 7},   // Pin 21 -> ADC2_IN7
+    {2, 8},   // Pin 22 -> ADC2_IN8
+    {2, 9}    // Pin 23 -> ADC2_IN9
 };
 
 // Buffers double (ping/pong)
